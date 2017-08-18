@@ -1,4 +1,5 @@
-import Preact, { h, Component } from 'preact';
+import { h } from 'preact';
+import Preact, { Component } from 'preact-compat';
 import PropTypes from 'prop-types';
 import Align from './Align';
 import Animate from './Animate';

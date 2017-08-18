@@ -1,5 +1,5 @@
 import addDOMEventListener from 'add-dom-event-listener';
-import ReactDOM from 'preact';
+import ReactDOM from 'preact-compat';
 
 export default function addEventListenerWrap(target, eventType, cb) {
   /* eslint camelcase: 2 */

@@ -1,5 +1,5 @@
-import { h, Component } from 'preact';
-import { findDOMNode } from 'preact-compat';
+import { Component, findDOMNode } from 'preact-compat';
+import { h } from 'preact';
 import PropTypes from 'prop-types';
 import cssAnimate, { isCssAnimationSupported } from 'css-animation';
 import animUtil from './util';

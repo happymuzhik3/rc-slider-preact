@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { Component } from 'preact-compat';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import shallowEqual from 'shallowequal';

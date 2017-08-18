@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { Component } from 'preact-compat';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import Track from './Track';
@@ -127,6 +128,7 @@ class Slider extends Component {
   }
 
   render() {
+    console.log('rendering')
     const {
       prefixCls,
       vertical,

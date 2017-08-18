@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact-compat';
+import { h } from 'preact';
 import PropTypes from 'prop-types';
 import LazyRenderBox from './LazyRenderBox';
 

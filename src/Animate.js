@@ -1,5 +1,5 @@
-import { h, cloneElement, Component } from 'preact';
-import { isValidElement } from 'preact-compat';
+import { h } from 'preact';
+import { cloneElement, Component, isValidElement } from 'preact-compat';
 import PropTypes from 'prop-types';
 import {
   toArrayChildren,
@@ -7,9 +7,9 @@ import {
   findShownChildInChildrenByKey,
   findChildInChildrenByKey,
   isSameChildren,
-} from './ChildrenUtils';
+} from './util';
+import * as animUtil from './util';
 import AnimateChild from './AnimateChild';
-import animUtil from './util';
 const defaultKey = `rc_animate_${Date.now()}`;
 
 function getChildrenFromProps(props) {

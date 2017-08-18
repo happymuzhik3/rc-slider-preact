@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { Component } from 'preact-compat';
 import PropTypes from 'prop-types';
 import Trigger from './Trigger';
 import { placements } from './placements';
