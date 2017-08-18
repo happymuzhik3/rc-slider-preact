@@ -7,7 +7,7 @@ import shallowEqual from 'shallowequal';
 import warning from 'warning';
 import Track from './Track';
 import createSlider from './createSlider';
-import * as utils from './utils';
+import * as util from './util';
 
 class Range extends Component {
   static displayName = 'Range';
@@ -62,7 +62,7 @@ class Range extends Component {
     if (nextBounds.length === bounds.length && nextBounds.every((v, i) => v === bounds[i])) return;
 
     this.setState({ bounds: nextBounds });
-    if (bounds.some(v => utils.isValueOutOfRange(v, nextProps))) {
+    if (bounds.some(v => util.isValueOutOfRange(v, nextProps))) {
       this.props.onChange(nextBounds);
     }
   }
@@ -114,7 +114,7 @@ class Range extends Component {
   }
 
   onMove(e, position) {
-    utils.pauseEvent(e);
+    util.pauseEvent(e);
     const props = this.props;
     const state = this.state;
 
@@ -263,9 +263,9 @@ class Range extends Component {
 
   trimAlignValue(v, nextProps = {}) {
     const mergedProps = { ...this.props, ...nextProps };
-    const valInRange = utils.ensureValueInRange(v, mergedProps);
+    const valInRange = util.ensureValueInRange(v, mergedProps);
     const valNotConflict = this.ensureValueNotConflict(valInRange, mergedProps);
-    return utils.ensureValuePrecision(valNotConflict, mergedProps);
+    return util.ensureValuePrecision(valNotConflict, mergedProps);
   }
 
   ensureValueNotConflict(val, { allowCross }) {
