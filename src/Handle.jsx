@@ -1,27 +1,27 @@
-import { Component } from 'preact-compat';
-import { h } from 'preact';
-import PropTypes from 'prop-types';
+/** @jsx h */
+import { h, Component } from 'preact'
+import PropTypes from 'prop-types'
 
 export default class Handle extends Component {
-  render() {
+  render () {
     const {
-      className, vertical, offset, style, disabled, min, max, value, ...restProps,
-    } = this.props;
+      className, vertical, offset, style, disabled, min, max, value, ...restProps
+    } = this.props
 
-    const postionStyle = vertical ? { bottom: `${offset}%` } : { left: `${offset}%` };
+    const postionStyle = vertical ? { bottom: `${offset}%` } : { left: `${offset}%` }
     const elStyle = {
       ...style,
-      ...postionStyle,
-    };
-    let ariaProps = {};
+      ...postionStyle
+    }
+    let ariaProps = {}
     if (value !== undefined) {
       ariaProps = {
         ...ariaProps,
         'aria-valuemin': min,
         'aria-valuemax': max,
         'aria-valuenow': value,
-        'aria-disabled': !!disabled,
-      };
+        'aria-disabled': !!disabled
+      }
     }
     return (
       <div
@@ -29,13 +29,13 @@ export default class Handle extends Component {
         aria-valuemax={0}
         aria-valuemin={0}
         aria-valuenow={0}
-        tabIndex="0"
+        tabIndex='0'
         {...ariaProps}
         {...restProps}
         className={className}
         style={elStyle}
       />
-    );
+    )
   }
 }
 
@@ -47,5 +47,5 @@ Handle.propTypes = {
   disabled: PropTypes.bool,
   min: PropTypes.number,
   max: PropTypes.number,
-  value: PropTypes.number,
-};
+  value: PropTypes.number
+}

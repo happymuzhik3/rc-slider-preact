@@ -1,24 +1,23 @@
-/* eslint-disable react/prop-types */
-
-import { h } from 'preact';
+/** @jsx h */
+import { h } from 'preact'
 
 const Track = (props) => {
-  const { className, included, vertical, offset, length, style } = props;
+  const { className, included, vertical, offset, length, style } = props
 
   const positonStyle = vertical ? {
     bottom: `${offset}%`,
-    height: `${length}%`,
+    height: `${length}%`
   } : {
     left: `${offset}%`,
-    width: `${length}%`,
-  };
+    width: `${length}%`
+  }
 
   const elStyle = {
     visibility: included ? 'visible' : 'hidden',
     ...style,
-    ...positonStyle,
-  };
-  return <div className={className} style={elStyle} />;
-};
+    ...positonStyle
+  }
+  return <div className={className} style={elStyle} />
+}
 
-export default Track;
+export default Track
