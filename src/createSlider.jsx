@@ -1,6 +1,5 @@
 /** @jsx h */
 import { h } from 'preact'
-import PropTypes from 'prop-types'
 import addDOMEventListener from 'add-dom-event-listener'
 import classNames from 'classnames'
 import Steps from './Steps'
@@ -13,32 +12,6 @@ function noop () {}
 export default function createSlider (Component) {
   return class ComponentEnhancer extends Component {
     static displayName = `ComponentEnhancer(${Component.displayName})`;
-    static propTypes = {
-      ...Component.propTypes,
-      min: PropTypes.number,
-      max: PropTypes.number,
-      step: PropTypes.number,
-      marks: PropTypes.object,
-      included: PropTypes.bool,
-      className: PropTypes.string,
-      prefixCls: PropTypes.string,
-      disabled: PropTypes.bool,
-      children: PropTypes.any,
-      onBeforeChange: PropTypes.func,
-      onChange: PropTypes.func,
-      onAfterChange: PropTypes.func,
-      handle: PropTypes.func,
-      dots: PropTypes.bool,
-      vertical: PropTypes.bool,
-      style: PropTypes.object,
-      minimumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
-      maximumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
-      handleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
-      trackStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
-      railStyle: PropTypes.object,
-      dotStyle: PropTypes.object,
-      activeDotStyle: PropTypes.object
-    };
 
     static defaultProps = {
       ...Component.defaultProps,
@@ -50,7 +23,7 @@ export default function createSlider (Component) {
       marks: {},
       handle ({ index, ...restProps }) {
         delete restProps.dragging
-        return <Handle {...restProps} key={index} />
+        return <Handle {...restProps} />
       },
       onBeforeChange: noop,
       onChange: noop,
@@ -124,7 +97,7 @@ export default function createSlider (Component) {
 
     onBlur = (e) => {
       this.onEnd(e)
-    };
+    }
 
     addDocumentTouchEvents () {
       // just work for Chrome iOS Safari and Android Browser
@@ -150,7 +123,7 @@ export default function createSlider (Component) {
     onMouseMove = (e) => {
       if (!this.sliderRef) {
         this.onEnd()
-        return;
+        return
       }
       const position = util.getMousePosition(this.props.vertical, e)
       this.onMove(e, position - this.dragOffset)
@@ -159,7 +132,7 @@ export default function createSlider (Component) {
     onTouchMove = (e) => {
       if (util.isNotTouchEvent(e) || !this.sliderRef) {
         this.onEnd()
-        return;
+        return
       }
 
       const position = util.getTouchPosition(this.props.vertical, e)

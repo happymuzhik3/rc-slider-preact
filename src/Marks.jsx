@@ -9,7 +9,8 @@ const Marks = ({
   included,
   upperBound,
   lowerBound,
-  max, min
+  max,
+  min
 }) => {
   const marksKeys = Object.keys(marks)
   const marksCount = marksKeys.length
@@ -56,6 +57,6 @@ const Marks = ({
   })
 
   return <div className={className}>{elements}</div>
-};
+}
 
 export default Marks

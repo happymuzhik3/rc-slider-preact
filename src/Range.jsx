@@ -2,7 +2,6 @@
 import { h, Component } from 'preact'
 import classNames from 'classnames'
 import shallowEqual from 'shallowequal'
-import warning from 'warning'
 import Track from './Track'
 import createSlider from './createSlider'
 import * as util from './util'
@@ -123,8 +122,43 @@ class Range extends Component {
     })
   }
 
-  onKeyboard () {
-    warning(true, 'Keyboard support is not yet supported for ranges.')
+  onKeyboard (e) {
+    const valueMutator = util.getKeyboardValueMutator(e)
+
+    if (valueMutator) {
+      // Get index of current handle
+      const handle = Object.keys(this.handlesRefs).reduce((curr, k, i) => {
+        if (curr !== null) return curr
+        return this.handlesRefs[k].base === document.activeElement ? i : curr
+      }, null)
+      if (handle === null) {
+        console.log('No handle ref')
+        return
+      }
+
+      util.pauseEvent(e)
+
+      const oldValue = this.state.bounds[handle]
+      const mutatedValue = valueMutator(oldValue, this.props)
+      const value = this.trimAlignValue(mutatedValue)
+      if (value === oldValue) return
+
+      const nextBounds = [...this.state.bounds]
+      nextBounds[handle] = value
+      let nextHandle = handle
+      if (this.props.pushable !== false) {
+        const originalValue = this.state.bounds[nextHandle]
+        this.pushSurroundingHandles(nextBounds, nextHandle, originalValue)
+      } else if (this.props.allowCross) {
+        nextBounds.sort((a, b) => a - b)
+        nextHandle = nextBounds.indexOf(value)
+      }
+
+      this.onChange({
+        handle: nextHandle,
+        bounds: nextBounds
+      })
+    }
   }
 
   getValue () {

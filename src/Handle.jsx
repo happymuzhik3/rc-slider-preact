@@ -1,6 +1,5 @@
 /** @jsx h */
 import { h, Component } from 'preact'
-import PropTypes from 'prop-types'
 
 export default class Handle extends Component {
   render () {
@@ -37,15 +36,4 @@ export default class Handle extends Component {
       />
     )
   }
-}
-
-Handle.propTypes = {
-  className: PropTypes.string,
-  vertical: PropTypes.bool,
-  offset: PropTypes.number,
-  style: PropTypes.object,
-  disabled: PropTypes.bool,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  value: PropTypes.number
 }
