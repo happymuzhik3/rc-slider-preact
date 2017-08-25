@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, isValidElement } from 'preact'
+import { h } from 'preact'
 import classNames from 'classnames'
 
 const Marks = ({
@@ -40,8 +40,7 @@ const Marks = ({
     const style = vertical ? bottomStyle : leftStyle
 
     const markPoint = marks[point]
-    const markPointIsObject = typeof markPoint === 'object' &&
-            !isValidElement(markPoint)
+    const markPointIsObject = typeof markPoint === 'object'
     const markLabel = markPointIsObject ? markPoint.label : markPoint
     const markStyle = markPointIsObject
             ? { ...style, ...markPoint.style } : style
